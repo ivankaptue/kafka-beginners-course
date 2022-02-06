@@ -19,12 +19,10 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author Ivan Kaptue
  */
 public class TwitterClient {
-    public static final String CONSUMER_KEY = "Km7vQPCGS2ttuBdfuEoY0RIWa";
-    public static final String CONSUMER_SECRET = "8DJDPWwCW5T2NSjSq28UM1YIyXt5wz0UV2i3faU5UdSydpSALc";
-    public static final String ACCESS_TOKEN = "768660312622981120-QsQTON8jLSNRU9auRiVLdCy1DWOpIkN";
-    public static final String ACCESS_TOKEN_SECRET = "ZEuAC7i6BD7uNMHGwxPC4XYv9BafKI3o3L9weG2PpmFwV";
-
-    private static boolean done = false;
+    public static final String CONSUMER_KEY = "";
+    public static final String CONSUMER_SECRET = "";
+    public static final String ACCESS_TOKEN = "";
+    public static final String ACCESS_TOKEN_SECRET = "";
 
     private TwitterClient() {
     }
@@ -69,9 +67,5 @@ public class TwitterClient {
             start();
         }
         return client;
-    }
-
-    public static boolean isDone() {
-        return done;
     }
 }

@@ -2,15 +2,11 @@ package com.klid.producer.twitter;
 
 import com.github.javafaker.Faker;
 import com.klid.producer.twitter.producer.TwitterProducer;
-import com.klid.producer.twitter.twitter.TwitterClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import static com.klid.producer.twitter.twitter.TwitterClient.getClient;
-import static com.klid.producer.twitter.twitter.TwitterClient.getMessageQueue;
 
 /**
  * @author Ivan Kaptue
@@ -35,22 +31,5 @@ public class Main {
                     logger.info("Message {}", message);
                     TwitterProducer.send(message);
                 }, 0, 500, TimeUnit.MILLISECONDS);
-    }
-
-    private static void initTwitterClient() {
-        TwitterClient.start();
-
-        // on a different thread, or multiple different threads....
-        while (!getClient().isDone()) {
-            String msg = null;
-            try {
-                msg = getMessageQueue().poll(5, TimeUnit.SECONDS);
-            } catch (InterruptedException e) {
-                getClient().stop();
-                e.printStackTrace();
-            }
-            logger.info("twitter message : {}", msg);
-            // TwitterProducer.send(msg);
-        }
     }
 }
